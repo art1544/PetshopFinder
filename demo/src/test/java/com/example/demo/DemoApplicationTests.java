@@ -1,10 +1,10 @@
-package com.petshopfinder.petshopfinder;
+package com.example.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PetshopfinderApplicationTests {
+class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {

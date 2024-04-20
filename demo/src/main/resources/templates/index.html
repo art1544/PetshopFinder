@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Canil de Eduardo</title>
+</head>
+<body>
+    <h1>Encontre o melhor PetShop para o banho do seu cão</h1>
+    <form th:action="@{/}" method="get">
+        <label for="date">Data:</label>
+        <input type="text" id="date" name="date">
+        <label for="smallDogs">Quantidade de cães pequenos:</label>
+        <input type="number" id="smallDogs" name="smallDogs">
+        <label for="largeDogs">Quantidade de cães grandes:</label>
+        <input type="number" id="largeDogs" name="largeDogs">
+        <button type="submit">Consultar</button>
+    </form>
+    <div th:if="${result}">
+        <h2 th:text="${result}"></h2>
+    </div>
+</body>
+</html>
