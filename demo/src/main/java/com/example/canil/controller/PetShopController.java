@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Calendar;
-
 @Controller
 public class PetShopController {
     private final PetShopService petShopService;
@@ -22,13 +20,9 @@ public class PetShopController {
                                 @RequestParam(required = false) Integer largeDogs,
                                 Model model) {
         if (date != null && smallDogs != null && largeDogs != null) {
-            Calendar cal = Calendar.getInstance();
-            // Código para parsear a data e passar para o serviço
-            String result = petShopService.findBestPetShop(cal, smallDogs, largeDogs);
+            String result = petShopService.findBestPetShop(date, smallDogs, largeDogs);
             model.addAttribute("result", result);
         }
         return "index";
     }
-
-    // outros métodos
 }
