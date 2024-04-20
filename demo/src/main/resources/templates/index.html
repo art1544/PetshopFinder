@@ -1,30 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Canil de Eduardo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop Finder</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/magnific-popup.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/responsive.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/off-canvas.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/rsmenu-main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/rs-spacing.css}">
+
+    
 </head>
-<body>
-    <h1>Encontre o melhor PetShop para o banho do seu cão</h1>
+<tbody class="home-orange-color">
     <form th:action="@{/petshopfinder}" method="get">
-        <div>
-            <label for="date">Data (dd/mm/aaaa):</label>
-            <input type="text" id="date" name="date" placeholder="dd/mm/aaaa">
+        <div class="main-content">
+            <div class="rs-contact contact-style2 pt-100 pb-100 md-pt-70 md-pb-70">
+                <div class="container custom">
+                    <div class="row y-middle">
+                        <div class="col-lg-6 md-mb-50">
+                            <div class="contact-img">
+                                <img src="/doguinho.png">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 pl-40 md-pl-15">
+                            <div class="contact-wrap">
+                                <div class="sec-title3 mb-35">
+                                    <span class="sub-title">Levando você ao petShop que cabe no seu bolso</span>
+                                    <h2 class="title pb-25">
+                                        PetShop Finder
+                                    </h2>
+                                    <div class="heading-border-line left-style"></div>
+                                </div>
+                                <div id="form-messages"></div>
+                                <form id="contact-form">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                                <input class="from-control" type="datetime" id="date" name="date" placeholder="Data dd/mm/aaaa" required="">
+                                            </div> 
+                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                                <input class="from-control" type="number" id="smallDogs" name="smallDogs" placeholder="Cães pequenos" required="">
+                                            </div>   
+                                            <div class="col-lg-6 col-md-6 col-sm-6 mb-30">
+                                                <input class="from-control" type="number" id="largeDogs" name="largeDogs" placeholder="Cães grandes" required="">
+                                            </div>   
+                                            <div th:if="${error}">
+                                                <h2 th:text="${error}"></h2>
+                                            </div>
+                                        </div>
+                                        <div th:if="${result}">
+                                            <h2 th:text="${result}"></h2>
+                                        </div>
+                                        <div class="btn-part">                                            
+                                            <div class="form-group mb-0">
+                                                <input class="readon submit orange-submit" type="submit" value="Consultar">
+                                            </div>
+                                        </div> 
+                                    </fieldset>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
-        <div>
-            <label for="smallDogs">Quantidade de cães pequenos:</label>
-            <input type="number" id="smallDogs" name="smallDogs">
-        </div>
-        <div>
-            <label for="largeDogs">Quantidade de cães grandes:</label>
-            <input type="number" id="largeDogs" name="largeDogs">
-        </div>
-        <button type="submit">Consultar</button>
-    </form>
-    <div th:if="${result}">
-        <h2 th:text="${result}"></h2>
     </div>
-    <div th:if="${error}">
-        <h2 th:text="${error}"></h2>
-    </div>
+ </tbody>
+
+    
 </body>
 </html>
