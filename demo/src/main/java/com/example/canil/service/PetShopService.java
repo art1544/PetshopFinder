@@ -19,30 +19,39 @@ public class PetShopService {
         this.petShopRepository = petShopRepository;
     }
 
-    public String findBestPetShop(String dateStr, int smallDogs, int largeDogs) {
-        LocalDate date = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    /**
+     * Método que encontra o melhor PetShop com base na data, quantidade de cães pequenos e quantidade de cães grandes.
+     * 
+     * @param data a data no formato "dd/MM/yyyy"
+     * @param caesPequenos a quantidade de cães pequenos
+     * @param caesGrandes a quantidade de cães grandes
+     * @return uma string contendo o nome do melhor PetShop, o preço total e se é final de semana ou dia útil
+     *         ou a mensagem "Nenhum petshop encontrado" caso nenhum PetShop seja encontrado
+     */
+    public String achaMelhorPetshop(String data, int caesPequenos, int caesGrandes) {
+        LocalDate date = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         List<PetShop> petShops = petShopRepository.findAll();
-        PetShop bestShop = null;
-        double bestPrice = Double.MAX_VALUE;
+        PetShop melhorShop = null;
+        double melhorPreco = Double.MAX_VALUE;
 
         boolean isWeekend = date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY;
 
         for (PetShop shop : petShops) {
-            double totalPrice = 0;
-            for (Price price : shop.getPrices()) {
-                if (price.isWeekend() == isWeekend) {
-                    totalPrice += price.getSmallDogPrice() * smallDogs + price.getLargeDogPrice() * largeDogs;
+            double precoTotal = 0;
+            for (Price preco : shop.getPrices()) {
+                if (preco.isWeekend() == isWeekend) {
+                    precoTotal += preco.getCaoPequenoPreco() * caesPequenos + preco.getCaoGrandePreco() * caesGrandes;
                 }
             }
 
-            if (totalPrice < bestPrice || (totalPrice == bestPrice && (bestShop == null || shop.getDistance() < bestShop.getDistance()))) {
-                bestShop = shop;
-                bestPrice = totalPrice;
+            if (precoTotal < melhorPreco || (precoTotal == melhorPreco && (melhorShop == null || shop.getDistance() < melhorShop.getDistance()))) {
+                melhorShop = shop;
+                melhorPreco = precoTotal;
             }
         }
 
-        return bestShop != null ?
-                String.format("Melhor PetShop: %s, Preço Total: R$ %.2f, %s", bestShop.getName(), bestPrice, isWeekend ? "Final de Semana" : "Dia Útil") :
+        return melhorShop != null ?
+                String.format("Melhor PetShop: %s, Preço Total: R$ %.2f, %s", melhorShop.getName(), melhorPreco, isWeekend ? "Final de Semana" : "Dia Útil") :
                 "Nenhum petshop encontrado";
     }
 }

@@ -8,12 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
 import java.util.List;
 
-/**
- * Entity representation for a PetShop in the application.
- */
 @Entity
 public class PetShop {
     @Id
@@ -28,10 +24,8 @@ public class PetShop {
     private List<Price> prices;
 
     public PetShop() {
-        // Default constructor for JPA
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

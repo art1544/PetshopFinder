@@ -14,15 +14,22 @@ public class PetShopController {
         this.petShopService = petShopService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/petshopfinder")
     public String getBestOption(@RequestParam(required = false) String date,
                                 @RequestParam(required = false) Integer smallDogs,
                                 @RequestParam(required = false) Integer largeDogs,
                                 Model model) {
-        if (date != null && smallDogs != null && largeDogs != null) {
-            String result = petShopService.findBestPetShop(date, smallDogs, largeDogs);
-            model.addAttribute("result", result);
-        }
+        if (date != null && smallDogs != null && largeDogs != null && smallDogs > 0 && largeDogs > 0) {
+           
+                String result = petShopService.achaMelhorPetshop(date, smallDogs, largeDogs);
+                model.addAttribute("result", result);
+            }
+            else{ 
+
+                String error = "Por favor, preencha todos os campos corretamente.";
+                model.addAttribute("error", error);
+            }
+
         return "index";
     }
 }

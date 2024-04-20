@@ -7,9 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-/**
- * Entity representation for a Price related to the services offered by a PetShop.
- */
 @Entity
 public class Price {
     @Id
@@ -24,10 +21,8 @@ public class Price {
     private PetShop petShop;
 
     public Price() {
-        // Default constructor for JPA
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -44,7 +39,7 @@ public class Price {
         isWeekend = weekend;
     }
 
-    public double getSmallDogPrice() {
+    public double getCaoPequenoPreco() {
         return smallDogPrice;
     }
 
@@ -52,7 +47,7 @@ public class Price {
         this.smallDogPrice = smallDogPrice;
     }
 
-    public double getLargeDogPrice() {
+    public double getCaoGrandePreco() {
         return largeDogPrice;
     }
 
@@ -66,5 +61,15 @@ public class Price {
 
     public void setPetShop(PetShop petShop) {
         this.petShop = petShop;
+    }
+
+    public void setCaoPequenoPreco(double d) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCaoPequenoPreco'");
+    }
+
+    public void setCaoGrandePreco(double d) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCaoGrandePreco'");
     }
 }

@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Encontre o melhor PetShop para o banho do seu cão</h1>
-    <form th:action="@{/}" method="get">
+    <form th:action="@{/petshopfinder}" method="get">
         <div>
             <label for="date">Data (dd/mm/aaaa):</label>
             <input type="text" id="date" name="date" placeholder="dd/mm/aaaa">
@@ -22,6 +22,9 @@
     </form>
     <div th:if="${result}">
         <h2 th:text="${result}"></h2>
+    </div>
+    <div th:if="${error}">
+        <h2 th:text="${error}"></h2>
     </div>
 </body>
 </html>
