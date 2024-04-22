@@ -44,7 +44,7 @@ O PetShop Finder é uma aplicação web desenvolvida para o teste prático da dt
 3. **Compilar e executar o projeto:**
 
     - Abra a pasta do repositório clonado;
-    - Abra o terminal de comando na pasta e execute os seguintes comandos:
+    - Abra o terminal de comando na pasta src (onde está o pom.xml) e execute os seguintes comandos:
    ```
    mvn clean install
    mvn spring-boot:run
